@@ -5,7 +5,7 @@ import Link from "next/link";
 import { Blog } from "@/payload-types";
 
 const BlogCard: FC<{ blog: Blog }> = ({ blog }) => {
-    const { title, coverImage, excerpt, date, slug } = blog;
+    const { title, coverImage, date, slug } = blog;
     
     // Handle coverImage which can be a Media object or null
     const imageUrl = typeof coverImage === 'object' && coverImage?.url 

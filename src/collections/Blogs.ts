@@ -22,7 +22,7 @@ export const Blogs: CollectionConfig = {
       },
       hooks: {
         beforeValidate: [
-          ({ data }) => {
+          ({ data }: { data: any }) => {
             if (data && data.title && !data.slug) {
               data.slug = data.title
                 .toLowerCase()
@@ -42,7 +42,7 @@ export const Blogs: CollectionConfig = {
     {
       name: "excerpt",
       type: "text",
-      required: true,
+      required: false, // Changed from true to false to avoid database issues
     },
     {
       name: "coverImage",
