@@ -216,7 +216,7 @@ export default async function Post({ params }: Props) {
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div className="w-full py-12 px-11 bg-white dark:bg-semidark shadow-lg font-medium">
+                                            {/* <div className="w-full py-12 px-11 bg-white dark:bg-semidark shadow-lg font-medium">
                                                 <p className="text-midnight_text text-2xl font-medium mb-4">
                                                     Join our Newsletter
                                                 </p>
@@ -230,7 +230,7 @@ export default async function Post({ params }: Props) {
                                                 >
                                                     Subscribe
                                                 </button>
-                                            </div>
+                                            </div> */}
                                         </div>
                                     </div>
                                 </div>

@@ -19,7 +19,7 @@ const Blog = async () => {
         <>
             <HeroSub
                 title="Blog List"
-                description="Letraset sheets containing Lorem Ipsum passages and more recently with desktop publishing Variou"
+                description=""
                 breadcrumbLinks={breadcrumbLinks}
             />
             <section className="flex flex-wrap justify-center dark:bg-darkmode px-4">

@@ -8,7 +8,7 @@ const Location = () => {
   ];
   return (
     <>
-      <section className="bg-primary lg:py-24 py-16 px-4">
+      {/* <section className="bg-primary lg:py-24 py-16 px-4">
         <div className="container mx-auto lg:max-w-screen-xl md:max-w-screen-md">
             <div className="">
                 <div className="grid md:grid-cols-6 lg:grid-cols-9 grid-cols-1 gap-7 border-b border-solid border-white border-opacity-50 pb-11">
@@ -37,7 +37,7 @@ const Location = () => {
                 </div>
             </div>
         </div>
-      </section>
+      </section> */}
     </>
   );
 };

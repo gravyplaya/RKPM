@@ -23,7 +23,7 @@ const Footer = () => {
                 Address
               </h4>
               <p className="mb-6 text-gray text-base">
-                RKPM Real estate 4263 Wilkinson Street Tennessee
+                RKPM<br /> 1167 Peck Street <br />Muskegon, MI 49441
               </p>
               <div className="flex items-center gap-2">
                 <Link
@@ -135,15 +135,15 @@ const Footer = () => {
             <div className="flex lg:flex-nowrap flex-wrap lg:flex-row lg:gap-11 gap-4 text-base sm:text-lg md:text-xl text-black text-opacity-50">
               <p className="text-white">
                 Phone :
-                <Link href="#" className="text-gray hover:text-white"> +(690) 2560 0020</Link>
+                <Link href="#" className="text-gray hover:text-white"> +(231) 220 6457</Link>
               </p>
               <p className="text-white">
                 Email :
-                <Link href="#" className="text-gray hover:text-white"> real@property.com</Link>
+                <Link href="#" className="text-gray hover:text-white"> rkpm@yahoo.com</Link>
               </p>
             </div>
           </div>
-          <div className="max-w-lg w-full">
+          {/* <div className="max-w-lg w-full">
             <div className="flex justify-center lg:justify-end">
               <p className="items-center flex mr-3 text-base sm:text-lg md:text-xl font-bold text-white">Newsletter</p>
               <input
@@ -155,7 +155,7 @@ const Footer = () => {
                 Subscribe
               </button>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </footer>

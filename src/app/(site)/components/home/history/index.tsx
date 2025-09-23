@@ -16,10 +16,7 @@ export default function History() {
             How we became number one
           </p>
           <p className="mb-8 pb-2 text-gray">
-            Letraset sheets containing Lorem Ipsum passages and more recently
-            with desktop publishing. Various versions have evolved over the
-            years, sometimes by accident, sometimes as necessary making release
-            of Letraset sheets containing Lorem Ipsum passages.
+
           </p>
           <Link
             href="/properties/properties-list"

@@ -57,7 +57,7 @@ const ContactForm = () => {
 
   return (
     <>
-      <section className="dark:bg-darkmode lg:pb-24 pb-16 px-4">
+      {/* <section className="dark:bg-darkmode lg:pb-24 pb-16 px-4">
         <div className="container mx-auto lg:max-w-screen-xl md:max-w-screen-md">
           <div className="grid md:grid-cols-12 grid-cols-1 gap-8 items-center">  
             <div className="col-span-6">
@@ -161,7 +161,7 @@ const ContactForm = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
     </>
   );
 };

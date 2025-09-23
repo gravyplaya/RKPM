@@ -17,7 +17,7 @@ const ContactInfo = () => {
                     Email Us
                   </span>
                   <p className="text-midnight_text/70 font-normal text-xl max-w-80 pt-3 pb-7 dark:text-gray">
-                    Feel free to contact us at info@propertypro.com we’ll respond promptly
+                    Feel free to contact us at rkpm@yahoo.com we’ll respond promptly
                   </p>
                 </div>
               </div>
