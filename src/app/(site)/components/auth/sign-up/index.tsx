@@ -71,7 +71,7 @@ const SignUp = () => {
       await new Promise((resolve) => setTimeout(resolve, 2000));
       localStorage.setItem("user", JSON.stringify({ user: formData.name }));
       router.push("/");
-    } catch (error) {
+    } catch {
     } finally {
       setLoading(false);
     }
@@ -141,13 +141,13 @@ const SignUp = () => {
 
           <p className="text-midnight_text dark:text-white mb-4 text-base">
             By creating an account you are agree with our{" "}
-            <a href="/#" className="text-midnight_text dark:text-white hover:text-primary dark:hover:text-primary">
+            <Link href="/#" className="text-midnight_text dark:text-white hover:text-primary dark:hover:text-primary">
               Privacy
-            </a>{" "}
+            </Link>{" "}
             and{" "}
-            <a href="/#" className="text-midnight_text dark:text-white hover:text-primary dark:hover:text-primary">
+            <Link href="/#" className="text-midnight_text dark:text-white hover:text-primary dark:hover:text-primary">
               Policy
-            </a>
+            </Link>
           </p>
 
           <p className="text-midnight_text dark:text-white text-base">

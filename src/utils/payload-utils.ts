@@ -1,38 +1,40 @@
-import { getPayload } from 'payload'
-import config from '@/payload.config'
-import { InitOptions } from 'payload/config'
+import { getPayload } from "payload";
+import type { Blog } from "../payload-types";
+import config from "../payload.config";
 
-let cached = (global as any).payload
-
-if (!cached) {
-  cached = (global as any).payload = {
-    client: null,
-    promise: null,
-  }
+export async function getPayloadClient() {
+  return await getPayload({
+    config,
+  });
 }
 
-interface Args {
-  initOptions?: Partial<InitOptions>
+export async function getAllBlogs(): Promise<Blog[]> {
+  const payload = await getPayload({
+    config,
+  });
+
+  const blogs = await payload.find({
+    collection: "blogs",
+    sort: "-date",
+  });
+
+  return blogs.docs;
 }
 
-export const getPayloadClient = async ({ initOptions }: Args = {}) => {
-  if (cached.client) {
-    return cached.client
-  }
+export async function getBlogBySlug(slug: string): Promise<Blog | null> {
+  const payload = await getPayload({
+    config,
+  });
 
-  if (!cached.promise) {
-    cached.promise = getPayload({
-      config,
-      initOptions,
-    })
-  }
+  const blogs = await payload.find({
+    collection: "blogs",
+    where: {
+      slug: {
+        equals: slug,
+      },
+    },
+    limit: 1,
+  });
 
-  try {
-    cached.client = await cached.promise
-  } catch (e: unknown) {
-    cached.promise = null
-    throw e
-  }
-
-  return cached.client
+  return blogs.docs.length > 0 ? blogs.docs[0] : null;
 }

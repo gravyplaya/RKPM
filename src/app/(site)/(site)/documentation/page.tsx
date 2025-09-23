@@ -6,7 +6,7 @@ import { PackageStructure } from "@/app/(site)/components/documentation/PackageS
 import { QuickStart } from "@/app/(site)/components/documentation/QuickStart";
 import { Metadata } from "next";
 export const metadata: Metadata = {
-    title: "Documentation | Property-pro",
+    title: "Documentation | RKPM",
 };
 
 export default function Page() {

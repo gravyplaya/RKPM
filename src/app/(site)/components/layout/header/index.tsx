@@ -137,19 +137,22 @@ const Header: React.FC = () => {
             </>
           ) : (
             <>
+              {/* Commented out Sign In button
               <Link
                 href="/signin"
                 className="hidden lg:block bg-transparent border border-primary text-primary px-4 py-2 rounded-lg hover:bg-blue-600 hover:text-white"
               >
                 Sign In
               </Link>
-
+              */}
+              {/* Commented out Sign Up button
               <Link
                 href="/signup"
                 className="hidden lg:block bg-primary text-white px-4 py-2 rounded-lg hover:bg-blue-700"
               >
                 Sign Up
               </Link>
+              */}
             </>
           )}
 
@@ -204,6 +207,7 @@ const Header: React.FC = () => {
               </>
             ) : (
               <>
+                {/* Commented out mobile Sign In button
                 <Link
                   href="/signin"
                   className="bg-transparent border border-primary text-primary px-4 py-2 rounded-lg hover:bg-blue-600 hover:text-white"
@@ -213,6 +217,8 @@ const Header: React.FC = () => {
                 >
                   Sign In
                 </Link>
+                */}
+                {/* Commented out mobile Sign Up button
                 <Link
                   href="/signup"
                   className="bg-primary text-white px-4 py-2 rounded-lg hover:bg-blue-700"
@@ -222,6 +228,7 @@ const Header: React.FC = () => {
                 >
                   Sign Up
                 </Link>
+                */}
               </>
             )}
           </div>

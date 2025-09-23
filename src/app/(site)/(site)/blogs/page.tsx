@@ -1,15 +1,15 @@
 
 import BlogCard from "@/app/(site)/components/shared/blog/blogCard";
 import HeroSub from "@/app/(site)/components/shared/hero-sub";
-import { getAllPosts } from "@/utils/markdown";
+import { getAllBlogs } from "@/utils/payload-utils";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "Blog | Property-pro",
+    title: "Blog | RKPM",
 };
 
-const Blog = () => {
-    const posts = getAllPosts(["title", "date", "excerpt", "coverImage", "slug"]);
+const Blog = async () => {
+    const posts = await getAllBlogs();
     const breadcrumbLinks = [
         { href: "/", text: "Home" },
         { href: "/blogs", text: "Blog List" },

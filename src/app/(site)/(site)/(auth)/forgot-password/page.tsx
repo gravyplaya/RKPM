@@ -3,7 +3,7 @@ import ForgotPassword from '@/app/(site)/components/auth/forgot-password'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Forgot password | Property-pro',
+  title: 'Forgot password | RKPM',
 }
 
 const Page = () => {

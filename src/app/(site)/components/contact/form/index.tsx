@@ -1,6 +1,5 @@
 "use client";
 import React, { useState } from "react";
-import Link from "next/link";
 import Image from "next/image";
 
 const ContactForm = () => {
@@ -15,7 +14,7 @@ const ContactForm = () => {
   });
   const [submitted, setSubmitted] = useState(false);
   const [loader, setLoader] = useState(false);
-  const handleChange = (e: any) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
       ...prevData,
@@ -30,7 +29,7 @@ const ContactForm = () => {
     formData.date = "";
     formData.time = "";
   };
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoader(true);
 

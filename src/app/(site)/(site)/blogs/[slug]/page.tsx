@@ -1,22 +1,15 @@
-import { getAllPosts, getPostBySlug } from "@/utils/markdown";
+import { getAllBlogs, getBlogBySlug } from "@/utils/payload-utils";
 import { format } from "date-fns";
 import Image from "next/image";
 import Link from "next/link";
-import Markdown from "react-markdown";
 
 type Props = {
     params: { slug: string };
 };
 
-export async function generateMetadata({ params }: any) {
+export async function generateMetadata({ params }: Props) {
     const data = await params;
-    const posts = getAllPosts(["title", "date", "excerpt", "coverImage", "slug"]);
-    const post = getPostBySlug(data.slug, [
-        "title",
-        "author",
-        "content",
-        "metadata",
-    ]);
+    const post = await getBlogBySlug(data.slug);
 
     const siteName = process.env.SITE_NAME || "Your Site Name";
     const authorName = process.env.AUTHOR_NAME || "Your Author Name";
@@ -61,17 +54,33 @@ export async function generateMetadata({ params }: any) {
     }
 }
 
-export default async function Post({ params }: any) {
+export default async function Post({ params }: Props) {
     const data = await params;
-    const posts = getAllPosts(["title", "date", "excerpt", "coverImage", "slug"]);
-    const post = getPostBySlug(data.slug, [
-        "title",
-        "author",
-        "authorImage",
-        "content",
-        "coverImage",
-        "date",
-    ]);
+    const post = await getBlogBySlug(data.slug);
+
+    // Handle case where post doesn't exist
+    if (!post) {
+        return (
+            <section className="relative pt-44 pb-20 bg-gradient-to-b from-white from-10% dark:from-darkmode to-herobg to-90% dark:to-darklight">
+                <div className="container lg:max-w-screen-xl md:max-w-screen-md mx-auto px-4">
+                    <div className="text-center">
+                        <h1 className="text-4xl font-bold text-midnight_text dark:text-white mb-4">
+                            Blog Post Not Found
+                        </h1>
+                        <p className="text-xl text-gray dark:text-white mb-8">
+                            The blog post you're looking for doesn't exist.
+                        </p>
+                        <Link 
+                            href="/blogs" 
+                            className="inline-block bg-primary hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg transition-colors"
+                        >
+                            Back to Blogs
+                        </Link>
+                    </div>
+                </div>
+            </section>
+        );
+    }
 
     return (
         <>
@@ -89,21 +98,6 @@ export default async function Post({ params }: any) {
                                 {post.title}
                             </h2>
                         </div>
-                        <div className="flex items-center md:justify-center justify-start gap-6 col-span-4 pt-4 md:pt-0">
-                            <Image
-                                src={post.authorImage}
-                                alt="image"
-                                className="bg-no-repeat bg-contain inline-block rounded-full !w-20 !h-20"
-                                width={40}
-                                height={40}
-                                layout="responsive"
-                                quality={100}
-                            />
-                            <div className="">
-                                <span className="text-[22px] leading-[1.2] font-bold text-midnight_text dark:text-white">Silicaman</span>
-                                <p className="text-xl text-gray dark:text-white">Author</p>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </section>
@@ -114,8 +108,12 @@ export default async function Post({ params }: any) {
                             <div
                                 className="z-20 mb-16 h-80 overflow-hidden rounded md:h-25 lg:h-31.25">
                                 <Image
-                                    src={post.coverImage}
-                                    alt="image"
+                                    src={
+                                        typeof post.coverImage === 'object' && post.coverImage?.url 
+                                            ? post.coverImage.url 
+                                            : "/images/blog/blog-image.jpg"
+                                    }
+                                    alt={post.title}
                                     width={1170}
                                     height={766}
                                     quality={100}
@@ -125,7 +123,16 @@ export default async function Post({ params }: any) {
                             <div className="-mx-4 flex flex-wrap">
                                 <div className="w-full px-4 lg:w-8/12">
                                     <div className="blog-details xl:pr-10">
-                                        <Markdown>{post.content}</Markdown>
+                                        <div className="prose prose-lg max-w-none dark:prose-invert">
+                                            <p className="text-gray-600 dark:text-gray-300">
+                                                {post.excerpt}
+                                            </p>
+                                            <div className="mt-6">
+                                                <p className="text-gray-700 dark:text-gray-200">
+                                                    Blog content will be rendered here once rich text rendering is properly implemented.
+                                                </p>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div className="w-full px-4 lg:w-4/12">

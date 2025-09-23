@@ -1,9 +1,8 @@
 "use client";
-import { signIn, useSession } from "next-auth/react";
 import Link from "next/link";
-import { useContext, useState } from "react";
+import { useState } from "react";
 import SocialSignIn from "../social-button/SocialSignIn";
-import toast, { Toaster } from 'react-hot-toast';
+import { Toaster } from 'react-hot-toast';
 import { useRouter } from "next/navigation";
 import Logo from "../../layout/header/logo";
 
@@ -23,7 +22,7 @@ const Signin = () => {
 
   // Input validation function
   const validateForm = () => {
-    let errors = { email: "", password: "" };
+    const errors = { email: "", password: "" };
     let isValid = true;
 
     if (!loginData.email) {
@@ -56,7 +55,7 @@ const Signin = () => {
       await new Promise((resolve) => setTimeout(resolve, 2000));
       localStorage.setItem("user", JSON.stringify({ user: loginData.email }));
       router.push("/");
-    } catch (error) {
+    } catch {
       alert("Something went wrong. Please try again.");
     } finally {
       setLoading(false);

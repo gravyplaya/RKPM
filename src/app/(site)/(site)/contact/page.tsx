@@ -6,7 +6,7 @@ import ContactInfo from "@/app/(site)/components/contact/contact-info";
 import ContactForm from "@/app/(site)/components/contact/form";
 import Location from "@/app/(site)/components/contact/office-location";
 export const metadata: Metadata = {
-  title: "Contact | Property-pro",
+  title: "Contact | RKPM",
 };
 
 const page = () => {

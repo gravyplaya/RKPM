@@ -11,6 +11,12 @@ export function getPostSlugs() {
 export function getPostBySlug(slug: string, fields: string[] = []) {
   const realSlug = slug.replace(/\.mdx$/, "");
   const fullPath = join(postsDirectory, `${realSlug}.mdx`);
+
+  // Check if file exists before trying to read it
+  if (!fs.existsSync(fullPath)) {
+    return null;
+  }
+
   const fileContents = fs.readFileSync(fullPath, "utf8");
   const { data, content } = matter(fileContents);
 
@@ -28,7 +34,7 @@ export function getPostBySlug(slug: string, fields: string[] = []) {
     }
     if (field === "content") {
       // You can modify the content here to include images
-      items[field] = (content);
+      items[field] = content;
     }
 
     if (field === "metadata") {

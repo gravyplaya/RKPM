@@ -1,10 +1,10 @@
 import React from 'react';
-import Image from 'next/image';
 import CompanyInfo from '@/app/(site)/components/home/info';
 import Availability from '@/app/(site)/components/property-details/availability';
 import Tabbar from '@/app/(site)/components/property-details/tabbar';
 import TextSection from '@/app/(site)/components/property-details/text-section';
 import DiscoverProperties from '@/app/(site)/components/home/property-option';
+import PropertyImageCarousel from '@/app/(site)/components/property-details/PropertyImageCarousel';
 
 async function getProperty(slug: string) {
   const isNumeric = /^\d+$/.test(slug);
@@ -41,24 +41,40 @@ async function getProperty(slug: string) {
     }
   }
 
+  // Fetch images array
+  if (property && property.images && Array.isArray(property.images)) {
+    const fetchedImages = [];
+    for (const img of property.images) {
+      if (img.upload && typeof img.upload === 'string') {
+        const imgRes = await fetch(`${process.env.NEXT_PUBLIC_PAYLOAD_URL}/api/media/${img.upload}`);
+        if (imgRes.ok) {
+          const imgData = await imgRes.json();
+          fetchedImages.push({
+            id: imgData.id,
+            url: imgData.url,
+            alt: imgData.alt || property.title
+          });
+        }
+      }
+    }
+    property.images = fetchedImages;
+  }
+
   return property
 }
 
-export default async function Details({ params }: { params: { slug: string } }) {
-  const item = await getProperty(params.slug);
+export default async function Details({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const item = await getProperty(slug);
 
   if (!item) {
     return (
       <div className="container mx-auto py-36 text-center">
-        <h2 className="text-2xl font-bold">Property not found</h2>
+        <h2 className="text-2xl font-bold">RKPM not found</h2>
       </div>
     );
   }
 
-  const breadcrumbLinks = [
-    { href: "/", text: "Home" },
-    { href: "/property-list", text: "Property Details" },
-  ];
   return (
     <div>
       <section className="bg-cover pt-36 pb-20 relative bg-gradient-to-b from-white from-10% dark:from-darkmode to-herobg to-90% dark:to-darklight overflow-x-hidden" >
@@ -68,16 +84,11 @@ export default async function Details({ params }: { params: { slug: string } }) 
       </section>
       <section>
         <div className='container mx-auto dark:bg-darkmode'>
-          <div className="h-[580px] max-w-5xl mx-auto w-full">
-            {item?.image?.url &&
-              <Image
-                src={item?.image?.url}
-                alt={item?.title}
-                width={1000}
-                height={600}
-                className='h-full w-full object-cover rounded-lg'
-              />}
-          </div>
+          <PropertyImageCarousel
+            images={item?.images || []}
+            title={item?.title || ''}
+            description={item?.description || ''}
+          />
         </div>
       </section>
       <TextSection property={item} />

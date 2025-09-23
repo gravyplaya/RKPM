@@ -4,17 +4,19 @@ import { getPayloadClient } from "@/utils/payload-utils";
 export async function GET() {
   try {
     const payload = await getPayloadClient();
-    const properties = await payload.find({
+
+    // Query all properties from Payload CMS
+    const result = await payload.find({
       collection: "properties",
+      sort: "-createdAt",
       depth: 1,
-      limit: 1000, // Increase limit to get more properties
     });
-    
-    return NextResponse.json(properties.docs);
+
+    return NextResponse.json(result);
   } catch (error) {
-    console.error('Error fetching properties:', error);
+    console.error("Properties fetch error:", error);
     return NextResponse.json(
-      { error: 'Failed to fetch properties' },
+      { error: "Failed to fetch properties" },
       { status: 500 }
     );
   }

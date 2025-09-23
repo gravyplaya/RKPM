@@ -7,6 +7,9 @@ export const Properties: CollectionConfig = {
   },
   access: {
     read: () => true,
+    create: () => true,
+    update: () => true,
+    delete: () => true,
   },
   fields: [
     {
@@ -51,11 +54,37 @@ export const Properties: CollectionConfig = {
       required: true,
     },
     {
+      name: "images",
+      type: "array",
+      fields: [
+        {
+          name: "upload",
+          type: "upload",
+          relationTo: "media",
+        },
+      ],
+      maxRows: 10,
+      required: false,
+      validate: (value) => {
+        if (!value || !Array.isArray(value)) return true;
+        const ids = value.map((item) => item);
+        const uniqueIds = new Set(ids);
+        if (ids.length !== uniqueIds.size) {
+          return "Duplicate images are not allowed. Each image must be unique.";
+        }
+        return true;
+      },
+    },
+    {
       name: "bedrooms",
       type: "number",
     },
     {
       name: "bathrooms",
+      type: "number",
+    },
+    {
+      name: "garages",
       type: "number",
     },
     {
@@ -65,6 +94,7 @@ export const Properties: CollectionConfig = {
     {
       name: "location",
       type: "text",
+      required: true,
     },
     {
       name: "category",
@@ -79,6 +109,68 @@ export const Properties: CollectionConfig = {
           value: "rent",
         },
       ],
+    },
+    {
+      name: "propertyType",
+      type: "select",
+      options: [
+        {
+          label: "Apartment",
+          value: "apartment",
+        },
+        {
+          label: "Villa",
+          value: "villa",
+        },
+        {
+          label: "Office",
+          value: "office",
+        },
+        {
+          label: "Shop",
+          value: "shop",
+        },
+        {
+          label: "House",
+          value: "house",
+        },
+        {
+          label: "Warehouse",
+          value: "warehouse",
+        },
+      ],
+    },
+    {
+      name: "status",
+      type: "select",
+      options: [
+        {
+          label: "Available",
+          value: "available",
+        },
+        {
+          label: "Sold",
+          value: "sold",
+        },
+        {
+          label: "Rented",
+          value: "rented",
+        },
+        {
+          label: "Pending",
+          value: "pending",
+        },
+      ],
+      defaultValue: "available",
+    },
+    {
+      name: "featured",
+      type: "checkbox",
+      defaultValue: false,
+    },
+    {
+      name: "yearBuilt",
+      type: "number",
     },
   ],
 };

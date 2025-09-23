@@ -1,9 +1,10 @@
 import React from 'react'
-import { getAllPosts } from "@/utils/markdown";
+import { getAllBlogs } from "@/utils/payload-utils";
 import BlogCard from './blogCard';
 
-const BlogSmall: React.FC = () => {
-    const posts = getAllPosts(["title", "date", "excerpt", "coverImage", "slug"]).slice(0, 2);
+const BlogSmall: React.FC = async () => {
+    const blogs = await getAllBlogs();
+    const recentBlogs = blogs.slice(0, 2);
 
     return (
         <section className="flex flex-col dark:bg-darkmode px-4 md:px-4">
@@ -12,8 +13,8 @@ const BlogSmall: React.FC = () => {
                     <h2 className=" text-2xl sm:text-4xl text-midnight_text dark:text-white text-center font-bold">Blog Post</h2>
                 </div>
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                    {posts.map((blog, i) => (
-                        <div key={i} className="w-full" data-aos="fade-up" data-aos-delay={`${i*200}`} data-aos-duration="1000">
+                    {recentBlogs.map((blog, i) => (
+                        <div key={blog.id} className="w-full" data-aos="fade-up" data-aos-delay={`${i*200}`} data-aos-duration="1000">
                             <BlogCard blog={blog} />
                         </div>
                     ))}
