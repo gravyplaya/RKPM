@@ -14,22 +14,19 @@ const features = [
     id: 1,
     imgSrc: "/images/features/rating.svg",
     title: "Great Experience",
-    description:
-      "Letraset sheets containing Lorem Ipsum passages and more recently with desktop publishing Variou",
+    description: "",
   },
   {
     id: 2,
     imgSrc: "/images/features/Give-Women's-Rights.svg",
     title: "Great Experience",
-    description:
-      "Letraset sheets containing Lorem Ipsum passages and more recently with desktop publishing Variou",
+    description: "",
   },
   {
     id: 3,
     imgSrc: "/images/features/live-chat.svg",
     title: "Great Experience",
-    description:
-      "Letraset sheets containing Lorem Ipsum passages and more recently with desktop publishing Variou",
+    description: "",
   },
 ];
 
