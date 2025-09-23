@@ -3,6 +3,7 @@ import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay, Keyboard } from 'swiper/modules';
 import Image from 'next/image';
+import { normalizeImageUrl, shouldOptimizeImage } from '@/utils/imageUtils';
 
 // Import Swiper styles
 import 'swiper/css';
@@ -78,20 +79,26 @@ export default function PropertyImageCarousel({ images, title, description }: Pr
           },
         }}
       >
-        {images.map((image, index) => (
-          <SwiperSlide key={image.id || index}>
-            <div className="relative h-full w-full">
-              <Image
-                src={image.url}
-                alt={`${title} - Image ${index + 1}${description ? `: ${description}` : ''}`}
-                fill
-                className="object-cover"
-                loading={index === 0 ? 'eager' : 'lazy'}
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 70vw"
-              />
-            </div>
-          </SwiperSlide>
-        ))}
+        {images.map((image, index) => {
+          const normalizedUrl = normalizeImageUrl(image.url);
+          const shouldOptimize = shouldOptimizeImage(normalizedUrl);
+          
+          return (
+            <SwiperSlide key={image.id || index}>
+              <div className="relative h-full w-full">
+                <Image
+                  src={normalizedUrl}
+                  alt={`${title} - Image ${index + 1}${description ? `: ${description}` : ''}`}
+                  fill
+                  className="object-cover"
+                  loading={index === 0 ? 'eager' : 'lazy'}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 70vw"
+                  unoptimized={!shouldOptimize}
+                />
+              </div>
+            </SwiperSlide>
+          );
+        })}
       </Swiper>
 
       {/* Custom Navigation Buttons */}

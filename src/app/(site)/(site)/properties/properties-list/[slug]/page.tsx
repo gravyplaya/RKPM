@@ -5,6 +5,7 @@ import Tabbar from '@/app/(site)/components/property-details/tabbar';
 import TextSection from '@/app/(site)/components/property-details/text-section';
 import DiscoverProperties from '@/app/(site)/components/home/property-option';
 import PropertyImageCarousel from '@/app/(site)/components/property-details/PropertyImageCarousel';
+import { normalizeImageUrl } from '@/utils/imageUtils';
 
 async function getProperty(slug: string) {
   const isNumeric = /^\d+$/.test(slug);
@@ -51,7 +52,7 @@ async function getProperty(slug: string) {
           const imgData = await imgRes.json();
           fetchedImages.push({
             id: imgData.id,
-            url: imgData.url,
+            url: normalizeImageUrl(imgData.url),
             alt: imgData.alt || property.title
           });
         }
