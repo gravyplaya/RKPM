@@ -47,6 +47,7 @@ async function getProperty(slug: string) {
     const fetchedImages = [];
     for (const img of property.images) {
       if (img.upload && typeof img.upload === 'string') {
+        // Legacy case: upload is a string ID, need to fetch the media data
         const imgRes = await fetch(`${process.env.NEXT_PUBLIC_PAYLOAD_URL}/api/media/${img.upload}`);
         if (imgRes.ok) {
           const imgData = await imgRes.json();
@@ -56,6 +57,13 @@ async function getProperty(slug: string) {
             alt: imgData.alt || property.title
           });
         }
+      } else if (img.upload && typeof img.upload === 'object' && img.upload.url) {
+        // Current case: upload is already an object with complete media data
+        fetchedImages.push({
+          id: img.upload.id,
+          url: normalizeImageUrl(img.upload.url),
+          alt: img.upload.alt || property.title
+        });
       }
     }
     property.images = fetchedImages;
@@ -71,7 +79,7 @@ export default async function Details({ params }: { params: Promise<{ slug: stri
   if (!item) {
     return (
       <div className="container mx-auto py-36 text-center">
-        <h2 className="text-2xl font-bold">RKPM not found</h2>
+        <h2 className="text-2xl font-bold">RK Suites not found</h2>
       </div>
     );
   }
@@ -93,10 +101,10 @@ export default async function Details({ params }: { params: Promise<{ slug: stri
         </div>
       </section>
       <TextSection property={item} />
-      <CompanyInfo />
+      {/* <CompanyInfo />
       <Tabbar />
       <Availability />
-      <DiscoverProperties />
+      <DiscoverProperties /> */}
     </div>
   );
 }

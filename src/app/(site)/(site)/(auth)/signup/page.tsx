@@ -4,7 +4,7 @@ import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title:
-    "Sign Up | RKPM",
+    "Sign Up | RK Suites",
 };
 
 const SignupPage = () => {

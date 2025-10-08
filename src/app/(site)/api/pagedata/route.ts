@@ -19,13 +19,13 @@ const features = [
   {
     id: 2,
     imgSrc: "/images/features/Give-Women's-Rights.svg",
-    title: "Great Experience",
+    title: "Trusted Service",
     description: "",
   },
   {
     id: 3,
     imgSrc: "/images/features/live-chat.svg",
-    title: "Great Experience",
+    title: "Instant Help",
     description: "",
   },
 ];
@@ -43,11 +43,11 @@ const searchOptions = {
   ],
   categories: [
     { value: "", label: "All Categories" },
-    { value: "sale", label: "For Sale" },
-    { value: "rent", label: "For Rent" },
+    { value: "office-suites", label: "Office Suites" },
+    { value: "residential-suites", label: "Residential Suites" },
   ],
   propertyTypes: [
-    { value: "", label: "All RKPM Types" },
+    { value: "", label: "All RK Suites Types" },
     { value: "apartment", label: "Apartment" },
     { value: "villa", label: "Villa" },
     { value: "office", label: "Office" },

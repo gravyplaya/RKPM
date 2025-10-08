@@ -182,7 +182,7 @@ export interface Property {
   garages?: number | null;
   area?: number | null;
   location: string;
-  category?: ('sale' | 'rent') | null;
+  category?: ('office-suites' | 'residential-suites') | null;
   propertyType?: ('apartment' | 'villa' | 'office' | 'shop' | 'house' | 'warehouse') | null;
   status?: ('available' | 'sold' | 'rented' | 'pending') | null;
   featured?: boolean | null;
@@ -199,7 +199,7 @@ export interface Blog {
   title: string;
   slug?: string | null;
   date: string;
-  excerpt: string;
+  excerpt?: string | null;
   coverImage?: (number | null) | Media;
   content: {
     root: {

@@ -10,7 +10,7 @@ import DiscoverProperties from './components/home/property-option';
 import Listing from './components/home/property-list';
 import Testimonials from './components/home/testimonial';
 export const metadata: Metadata = {
-  title: "RKPM",
+  title: "RK Suites",
 };
 
 export default function Home() {
@@ -19,12 +19,12 @@ export default function Home() {
       <Hero />
       <DiscoverProperties />
       <Listing />
-      <Calculator />
+      {/* <Calculator />
       <Features />
       <History />
       <Testimonials />
       <CompanyInfo />
-      <BlogSmall />
+      <BlogSmall /> */}
     </main>
   )
 }

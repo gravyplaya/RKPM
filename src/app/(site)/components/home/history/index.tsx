@@ -12,7 +12,7 @@ export default function History() {
           data-aos="fade-right"
         >
           <p className="text-4xl text-midnight_text dark:text-white mb-8 font-bold">
-            RKPM History <br />
+            RK Suites History <br />
             How we became number one
           </p>
           <p className="mb-8 pb-2 text-gray">
@@ -39,7 +39,7 @@ export default function History() {
                   Years Experience
                 </p>
                 <p className="text-[65px] leading-[1.2] -mt-1 text-midnight_text dark:text-white font-bold mb-2">
-                  33
+                  25
                 </p>
               </div>
               <div>

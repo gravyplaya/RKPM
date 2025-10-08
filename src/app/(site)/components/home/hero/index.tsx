@@ -7,7 +7,7 @@ const Hero = () => {
   const router = useRouter();
   const [propertiesData, setPropertiesData] = useState<any[]>([])
   const [searchOptions, setSearchOptions] = useState<any>({});
-  const [activeTab, setActiveTab] = useState("sale");
+  const [activeTab, setActiveTab] = useState("office-suites");
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [location, setLocation] = useState("");
   const [error, setError] = useState('');
@@ -83,7 +83,10 @@ const Hero = () => {
   };
 
   return (
-    <section className="relative pt-44 pb-0 dark:bg-darklight bg-no-repeat bg-gradient-to-b from-white from-10% dark:from-darkmode to-herobg to-90% dark:to-darklight overflow-x-hidden">
+    <section className="relative pt-44 pb-0 bg-no-repeat bg-cover bg-center bg-fixed overflow-x-hidden" 
+             style={{ backgroundImage: 'url("/images/theraj/front3.jpg")', backgroundPositionY: '-300px' }}>
+      {/* Overlay for better text readability */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/40 from-10% via-black/20 to-black/60 to-90%"></div>
       <div className="container mx-auto lg:max-w-screen-xl md:max-w-screen-md relative z-10">
         <div className="grid lg:grid-cols-12 grid-cols-1">
           <div
@@ -91,34 +94,36 @@ const Hero = () => {
             data-aos="fade-right"
           >
             <div className="mb-8">
-              <h1 className="md:text-[50px] leading-[1.2] text-4xl  ml-4 text-midnight_text dark:text-white font-bold">
+              <h1 className="md:text-[50px] leading-[1.2] text-4xl ml-4 text-white font-bold drop-shadow-lg">
                 Find Your Next Home
               </h1>
             </div>
             <div className="max-w-xl ml-4 sm:w-full">
               <div className="flex gap-1 bg-trasperent">
                 <button
-                  className={`px-9 py-3 text-xl rounded-t-md focus:outline-none ${activeTab === "sale"
-                    ? "bg-white dark:bg-darkmode text-midnight_text dark:text-white border-b border-primary"
-                    : "text-midnight_text bg-white bg-opacity-50 dark:text-white dark:bg-darkmode dark:bg-opacity-50"
+                  type="button"
+                  className={`px-9 py-3 text-xl rounded-t-md focus:outline-none ${activeTab === "office-suites"
+                    ? "bg-white/90 dark:bg-darkmode/90 text-midnight_text dark:text-white border-b border-primary"
+                    : "text-white bg-white/30 dark:bg-darkmode/30 backdrop-blur-sm"
                     }`}
-                  onClick={() => handleTabChange("sale")}
+                  onClick={() => handleTabChange("office-suites")}
                 >
-                  For Sale
+                  Office Suites
                 </button>
                 <button
-                  className={`px-9 py-3 text-xl rounded-t-md focus:outline-none ${activeTab === "rent"
-                    ? "bg-white dark:bg-darkmode dark:text-white text-midnight_text border-b border-primary"
-                    : "text-midnight_text bg-white bg-opacity-50 dark:text-white dark:bg-darkmode dark:bg-opacity-50"
+                  type="button"
+                  className={`px-9 py-3 text-xl rounded-t-md focus:outline-none ${activeTab === "residential-suites"
+                    ? "bg-white/90 dark:bg-darkmode/90 text-midnight_text dark:text-white border-b border-primary"
+                    : "text-white bg-white/30 dark:bg-darkmode/30 backdrop-blur-sm"
                     }`}
-                  onClick={() => handleTabChange("rent")}
+                  onClick={() => handleTabChange("residential-suites")}
                 >
-                  For Rent
+                  Residential Suites
                 </button>
               </div>
-              <div className="bg-white dark:bg-transparent rounded-b-lg rounded-tr-lg">
-                {(activeTab === "sale" || activeTab === "rent") && (
-                  <div className="bg-white dark:bg-darkmode rounded-b-lg rounded-tr-lg shadow-lg p-8 pb-10">
+              <div className="bg-white/95 dark:bg-darkmode/95 backdrop-blur-sm rounded-b-lg rounded-tr-lg">
+                {(activeTab === "office-suites" || activeTab === "residential-suites") && (
+                  <div className="bg-white/95 dark:bg-darkmode/95 rounded-b-lg rounded-tr-lg shadow-lg p-8 pb-10">
                     <div className="relative rounded-lg border-0 my-2">
                       <div className="relative flex items-center">
                         <div className="absolute left-0 p-4">
@@ -144,10 +149,13 @@ const Hero = () => {
                             <ul className="flex flex-col gap-2 py-4 px-8">
                               {filteredSuggestions.slice(0, 5).map((item, index) => (
                                 <li
-                                  key={index}
-                                  onClick={() => handleSelect(item)}
+                                  key={`suggestion-${item.replace(/\s+/g, '-').toLowerCase()}-${index}`}
                                 >
-                                  <p className="cursor-pointer text-midnight_text dark:text-white text-lg hover:text-primary dark:hover:text-primary">{item}</p>
+                                  <button
+                                    type="button"
+                                    className="cursor-pointer text-midnight_text dark:text-white text-lg hover:text-primary dark:hover:text-primary text-left w-full p-0 border-none bg-transparent"
+                                    onClick={() => handleSelect(item)}
+                                  >{item}</button>
                                 </li>
                               ))}
                             </ul>
@@ -159,6 +167,7 @@ const Hero = () => {
                     <div className="mt-6 flex flex-col-reverse gap-4 md:justify-between">
                       <div className="flex flex-col md:flex-row md:gap-4 w-full">
                         <button 
+                          type="button"
                           onClick={handleSearch} 
                           disabled={loading}
                           className="flex-1 py-2 md:py-4 text-lg md:text-xl px-4 md:px-8 bg-primary text-white rounded-lg hover:bg-blue-700 transition duration-300 mb-2 md:mb-0 md:mr-2 disabled:opacity-50 disabled:cursor-not-allowed"
@@ -166,6 +175,7 @@ const Hero = () => {
                           {loading ? 'Searching...' : 'Search'}
                         </button>
                         <button 
+                          type="button"
                           onClick={() => router.push(`/properties/properties-list?category=${activeTab}`)} 
                           className="flex-1 py-2 md:py-4 text-lg md:text-xl px-4 md:px-8 bg-skyBlue/80 dark:bg-skyBlue/80 dark:hover:bg-skyBlue dark:hover:border-primary border border-transparent text-white rounded-lg hover:bg-skyBlue transition duration-300 text-nowrap"
                         >
@@ -225,15 +235,6 @@ const Hero = () => {
                 </p>
               </div> */}
             </div>
-          </div>
-          <div className="lg:block hidden col-span-6 absolute xl:-right-60 right-0 bottom-0 -z-1">
-            <Image
-              src="/images/hero/hero-image.png"
-              alt="heroimage"
-              width={800}
-              height={0}
-              style={{ width: "100%", height: "auto" }}
-            />
           </div>
         </div>
       </div>

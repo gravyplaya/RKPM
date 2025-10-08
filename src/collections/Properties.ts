@@ -101,12 +101,12 @@ export const Properties: CollectionConfig = {
       type: "select",
       options: [
         {
-          label: "For Sale",
-          value: "sale",
+          label: "Office Suites",
+          value: "office-suites",
         },
         {
-          label: "For Rent",
-          value: "rent",
+          label: "Residential Suites",
+          value: "residential-suites",
         },
       ],
     },

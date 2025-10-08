@@ -13,7 +13,7 @@ export default function CompanyInfo() {
                         </div>
                         <div className='flex lg:flex-row flex-col justify-center items-center md:border-r border-border py-10 px-4 md:px-4' data-aos="fade-up">
                             <p className='text-[60px] leading-[1.2] mr-4 text-white'>780K</p>
-                            <p className='text-2xl text-white'>RKPM Sales</p>
+                            <p className='text-2xl text-white'>RK Suites Sales</p>
                         </div>
                         <div className='flex lg:flex-row flex-col justify-center items-center py-10 px-4 md:px-4' data-aos="fade-left">
                             <p className='text-[60px] leading-[1.2] mr-4 text-white'>160+</p>

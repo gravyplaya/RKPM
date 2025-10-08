@@ -5,7 +5,7 @@ import { getAllBlogs } from "@/utils/payload-utils";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "Blog | RKPM",
+    title: "Blog | RK Suites",
 };
 
 const Blog = async () => {

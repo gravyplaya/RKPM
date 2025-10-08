@@ -23,7 +23,7 @@ const Footer = () => {
                 Address
               </h4>
               <p className="mb-6 text-gray text-base">
-                RKPM<br /> 1167 Peck Street <br />Muskegon, MI 49441
+                RK Suites<br /> 1167 Peck Street <br />Muskegon, MI 49441
               </p>
               <div className="flex items-center gap-2">
                 <Link
@@ -92,11 +92,11 @@ const Footer = () => {
                     Properties
                   </Link>
                 </li>
-                <li>
+                {/* <li>
                   <Link href="/blogs" className="mb-3 inline-block text-base text-gray hover:text-white">
                     Blog
                   </Link>
-                </li>
+                </li> */}
               </ul>
             </div>
             <div className="w-full lg:col-span-4 col-span-12">
