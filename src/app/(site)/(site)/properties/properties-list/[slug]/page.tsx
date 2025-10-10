@@ -1,9 +1,5 @@
 import React from 'react';
-import CompanyInfo from '@/app/(site)/components/home/info';
-import Availability from '@/app/(site)/components/property-details/availability';
-import Tabbar from '@/app/(site)/components/property-details/tabbar';
 import TextSection from '@/app/(site)/components/property-details/text-section';
-import DiscoverProperties from '@/app/(site)/components/home/property-option';
 import PropertyImageCarousel from '@/app/(site)/components/property-details/PropertyImageCarousel';
 import { normalizeImageUrl } from '@/utils/imageUtils';
 

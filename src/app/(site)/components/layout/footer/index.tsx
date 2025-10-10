@@ -105,23 +105,13 @@ const Footer = () => {
               </h4>
               <ul>
                 <li>
-                  <Link href="/properties/properties-list?category=apartment" className="mb-3 inline-block text-base text-gray hover:text-white">
-                    Apartment for Rent
+                  <Link href="/properties/properties-list?category=residential-suites" className="mb-3 inline-block text-base text-gray hover:text-white">
+                    Residential Suites
                   </Link>
                 </li>
                 <li>
-                  <Link href="/properties/properties-list?category=house" className="mb-3 inline-block text-base text-gray hover:text-white">
-                    House for Buy
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/properties/properties-list?category=office" className="mb-3 inline-block text-base text-gray hover:text-white">
-                    Offices for Buy
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/properties/properties-list?category=shop" className="mb-3 inline-block text-base text-gray hover:text-white">
-                    Shop for Rent
+                  <Link href="/properties/properties-list?category=office-suites" className="mb-3 inline-block text-base text-gray hover:text-white">
+                    Office Suites
                   </Link>
                 </li>
               </ul>

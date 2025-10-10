@@ -12,7 +12,7 @@ export type Blog = {
         filename?: string | null;
       };
   date: string;
-  content?: any;
+  content?: Record<string, unknown>;
   updatedAt: string;
   createdAt: string;
 };

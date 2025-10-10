@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "@/app/(site)/style/index.css"
 import Link from "next/link";
 
@@ -7,12 +7,12 @@ export default function Calculator() {
   const [activeTab, setActiveTab] = useState("sell");
   const [price, setPrice] = useState(10000);
 
-  const handleTabChange = (tab: any) => {
+  const handleTabChange = (tab: string) => {
     setActiveTab(tab);
   };
 
-  const handlePriceChange = (event: any) => {
-    setPrice(event.target.value);
+  const handlePriceChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setPrice(Number(event.target.value));
   };
 
   return (

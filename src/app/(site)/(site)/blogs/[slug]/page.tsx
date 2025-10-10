@@ -1,4 +1,4 @@
-import { getAllBlogs, getBlogBySlug } from "@/utils/payload-utils";
+import { getBlogBySlug } from "@/utils/payload-utils";
 import { format } from "date-fns";
 import Image from "next/image";
 import Link from "next/link";
@@ -68,7 +68,7 @@ export default async function Post({ params }: Props) {
                             Blog Post Not Found
                         </h1>
                         <p className="text-xl text-gray dark:text-white mb-8">
-                            The blog post you're looking for doesn't exist.
+                            The blog post you&apos;re looking for doesn&apos;t exist.
                         </p>
                         <Link 
                             href="/blogs" 

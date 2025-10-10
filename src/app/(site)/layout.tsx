@@ -14,7 +14,7 @@ export default function RootLayout({
   session,
 }: Readonly<{
   children: React.ReactNode;
-  session:any
+  session?: any
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>

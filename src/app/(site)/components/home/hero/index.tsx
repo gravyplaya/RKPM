@@ -5,8 +5,8 @@ import { useRouter } from "next/navigation";
 
 const Hero = () => {
   const router = useRouter();
-  const [propertiesData, setPropertiesData] = useState<any[]>([])
-  const [searchOptions, setSearchOptions] = useState<any>({});
+  const [propertiesData, setPropertiesData] = useState<Array<{location: string}>>([])
+  const [searchOptions, setSearchOptions] = useState<{locations?: Array<{value: string}>}>({});
   const [activeTab, setActiveTab] = useState("office-suites");
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [location, setLocation] = useState("");
@@ -37,7 +37,7 @@ const Hero = () => {
     fetchData()
   }, [])
 
-  const handleTabChange = (tab: any) => {
+  const handleTabChange = (tab: string) => {
     setActiveTab(tab);
   };
 
@@ -70,14 +70,14 @@ const Hero = () => {
   // Get location suggestions from both properties data and search options
   const locationSuggestions = Array.from(new Set([
     ...propertiesData.map((item) => item.location).filter(Boolean),
-    ...((searchOptions.locations || []).map((loc: any) => loc.value).filter(Boolean))
+    ...((searchOptions.locations || []).map((loc) => loc.value).filter(Boolean))
   ]));
 
   const filteredSuggestions = locationSuggestions.filter(suggestion =>
     suggestion.toLowerCase().includes(location.toLowerCase())
   );
 
-  const handleSelect = (value: any) => {
+  const handleSelect = (value: string) => {
     setLocation(value);
     setShowSuggestions(false);
   };
@@ -95,7 +95,7 @@ const Hero = () => {
           >
             <div className="mb-8">
               <h1 className="md:text-[50px] leading-[1.2] text-4xl ml-4 text-white font-bold drop-shadow-lg">
-                Find Your Next Home
+                Find Your Next Home or Office
               </h1>
             </div>
             <div className="max-w-xl ml-4 sm:w-full">
